@@ -1,0 +1,65 @@
+[
+  {
+    "title": "THE SUPERFAKE SYNDROME",
+    "slug": "superfake",
+    "subtitle": "",
+    "date": "2026-09-17",
+    "category": "EDITORIAL",
+    "cover": "/images/f0.jpeg",
+    "status": "published"
+  },
+  {
+    "title": "This is CẢI LƯƠNG",
+    "slug": "thisiscai",
+    "subtitle": "",
+    "date": "2026-09-17",
+    "category": "EDITORIAL",
+    "cover": "/images/c0.jpeg",
+    "status": "published"
+  },
+  {
+    "title": "This Ella Mannov's Affordance Play",
+    "slug": "ellamannov",
+    "subtitle": "",
+    "date": "2026-09-17",
+    "category": "EDITORIAL",
+    "cover": "/images/e0.jpeg",
+    "status": "published"
+  },
+  {
+    "title": "Hair Revival: The Return of the Uncomfortable",
+    "slug": "hair-revival-the-return-of-the-uncomfortable",
+    "subtitle": "Hair-like textures are becoming a design language for visual discomfort.",
+    "date": "2026-09-17",
+    "category": "DESIGN",
+    "cover": "/images/coverhair.jpeg",
+    "status": "published"
+  },
+  {
+    "title": "The X-ray look: A post-pornographic aesthetic",
+    "slug": "x-ray-look-post-pornographic-aesthetic",
+    "subtitle": "Paper-thin surfaces, translucent veils, and the return of distance.",
+    "date": "2026-09-17",
+    "category": "FASHION",
+    "cover": "/images/x0.jpg",
+    "status": "published"
+  },
+  {
+    "title": "Adéla: The birth of Pop Sleaze",
+    "slug": "adela-pop-sleaze",
+    "subtitle": "Turning Indie Sleaze into pop with chaos, glamour, and self-aware excess.",
+    "date": "2026-09-17",
+    "category": "CULTURE",
+    "cover": "/images/a1.jpeg",
+    "status": "published"
+  },
+  {
+    "title": "Millennial Optimism: 2012–2016",
+    "slug": "millennial-optimism-2012-2016",
+    "subtitle": "When the future still felt open, progressive, and full of possibility.",
+    "date": "2026-09-17",
+    "category": "CULTURE",
+    "cover": "/images/m0.jpeg",
+    "status": "published"
+  }
+]

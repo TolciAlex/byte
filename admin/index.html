@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BYTE | Admin</title>
+  <meta name="description" content="BYTE admin dashboard.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@400;600;700&family=Bodoni+Moda:opsz,wght@6..96,400;6..96,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="admin-page">
+  <header class="site-header">
+    <div>
+      <a class="logo" href="../index.html">BYTE</a>
+      <p class="tagline">Local editorial control</p>
+    </div>
+    <nav class="header-nav">
+      <a href="index.html">Articles</a>
+      <a href="editor.html">New Article</a>
+    </nav>
+  </header>
+
+  <main class="admin-shell">
+    <section class="admin-panel">
+      <div class="article-kicker">ARTICLES · local files</div>
+      <div class="admin-actions">
+        <a class="admin-button" href="editor.html">New Article</a>
+      </div>
+      <div class="admin-table-wrap">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Date</th>
+              <th>Status</th>
+              <th>Category</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="articles-table"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script src="../js/admin.js"></script>
+</body>
+</html>

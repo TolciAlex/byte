@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BYTE | Article Editor</title>
+  <meta name="description" content="BYTE article editor.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@400;600;700&family=Bodoni+Moda:opsz,wght@6..96,400;6..96,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="admin-page">
+  <header class="site-header">
+    <div>
+      <a class="logo" href="../index.html">BYTE</a>
+      <p class="tagline">Local magazine editor</p>
+    </div>
+    <nav class="header-nav">
+      <a href="index.html">Articles</a>
+      <a href="editor.html">Editor</a>
+    </nav>
+  </header>
+
+  <main class="admin-shell admin-editor-shell">
+    <section class="admin-panel admin-form-panel">
+      <div class="article-kicker">EDITOR</div>
+      <p class="admin-note" id="editor-status">Create a new article or open an existing one from the Articles list.</p>
+      <div class="admin-grid">
+        <label>
+          <span>Title</span>
+          <input id="title" type="text" placeholder="Article title">
+        </label>
+        <label>
+          <span>Slug</span>
+          <input id="slug" type="text" placeholder="unique-article-slug">
+        </label>
+        <label>
+          <span>Cover image</span>
+          <select id="cover"></select>
+        </label>
+        <label>
+          <span>Cover image path</span>
+          <input id="cover-custom" type="text" placeholder="/images/your-image.jpg">
+        </label>
+      </div>
+
+      <div class="admin-toolbar">
+        <button class="admin-button" id="refresh-images" type="button">Refresh Images</button>
+        <button class="admin-button" id="save-draft" type="button">Save Draft</button>
+        <button class="admin-button" id="preview-button" type="button">Preview</button>
+        <button class="admin-button primary" id="download-button" type="button">Download JSON</button>
+      </div>
+
+      <div class="article-kicker">ARTICLE CONTENT</div>
+      <div id="blocks"></div>
+      <button class="admin-button" id="add-block" type="button">+ Add block</button>
+      <p class="admin-note">If a new file is missing from the selector, click Refresh Images. If it still does not appear, type the path directly like /images/your-image.jpg or run npm.cmd run build to regenerate the image manifest.</p>
+    </section>
+
+    <section class="admin-panel admin-preview-panel">
+      <div class="article-kicker">PREVIEW</div>
+      <div id="preview"></div>
+    </section>
+  </main>
+
+  <script src="../js/admin-editor.js"></script>
+</body>
+</html>
