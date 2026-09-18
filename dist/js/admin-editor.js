@@ -1,4 +1,20 @@
-const IMAGE_MANIFEST_URL = '../content/image-index.json';
+const IMAGE_MANIFEST_CANDIDATES = [
+  '../content/image-index.json',
+  '/content/image-index.json',
+  'content/image-index.json',
+  '../dist/content/image-index.json'
+];
+const IMAGE_DIRECTORY_LISTING_CANDIDATES = [
+  '../images/',
+  '/images/',
+  'images/'
+];
+const CONTENT_INDEX_CANDIDATES = [
+  '../content/index.json',
+  '/content/index.json',
+  'content/index.json',
+  '../dist/content/index.json'
+];
 const POST_CONTENT_BASE_URL = '../content/posts';
 
 const initialState = {
@@ -14,6 +30,8 @@ const initialState = {
 
 let state = JSON.parse(JSON.stringify(initialState));
 let imageOptions = [];
+
+const IMAGE_EXTENSIONS = ['.jpg', '.jpeg', '.png', '.webp', '.gif', '.avif'];
 
 function getEditorStatus() {
   return document.getElementById('editor-status');
@@ -50,13 +68,116 @@ function requestedSlug() {
 }
 
 async function loadImageOptions() {
-  try {
-    const response = await fetch(`${IMAGE_MANIFEST_URL}?v=${Date.now()}`, { cache: 'no-store' });
-    if (!response.ok) throw new Error('manifest unavailable');
-    imageOptions = await response.json();
-  } catch {
-    imageOptions = [];
+  const stamp = Date.now();
+  const byPath = new Map();
+
+  function addImages(list = []) {
+    list.forEach((entry) => {
+      if (!entry || typeof entry.path !== 'string') return;
+      if (!entry.path.startsWith('/images/')) return;
+
+      const existing = byPath.get(entry.path);
+      if (existing) return;
+
+      byPath.set(entry.path, {
+        path: entry.path,
+        name: entry.name || entry.path.split('/').pop() || entry.path
+      });
+    });
   }
+
+  async function loadFromDirectoryListing() {
+    for (const listingUrl of IMAGE_DIRECTORY_LISTING_CANDIDATES) {
+      try {
+        const response = await fetch(`${listingUrl}?v=${stamp}`, { cache: 'no-store' });
+        if (!response.ok) continue;
+
+        const html = await response.text();
+        if (!html.includes('<a')) continue;
+
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(html, 'text/html');
+        const anchors = Array.from(doc.querySelectorAll('a[href]'));
+
+        const discovered = anchors
+          .map((anchor) => anchor.getAttribute('href') || '')
+          .map((href) => href.split('?')[0].split('#')[0])
+          .filter((href) => href && !href.endsWith('/'))
+          .filter((href) => IMAGE_EXTENSIONS.some((ext) => href.toLowerCase().endsWith(ext)))
+          .map((href) => {
+            const fileName = decodeURIComponent(href.split('/').pop() || href);
+            return {
+              path: `/images/${fileName}`,
+              name: fileName
+            };
+          });
+
+        addImages(discovered);
+      } catch {
+        // Ignore unavailable directory listing sources.
+      }
+    }
+  }
+
+  for (const manifestUrl of IMAGE_MANIFEST_CANDIDATES) {
+    try {
+      const response = await fetch(`${manifestUrl}?v=${stamp}`, { cache: 'no-store' });
+      if (!response.ok) continue;
+
+      const payload = await response.json();
+      const list = Array.isArray(payload)
+        ? payload
+        : (payload && Array.isArray(payload.images) ? payload.images : []);
+
+      if (!list.length) continue;
+      addImages(list);
+    } catch {
+      // Try the next candidate URL.
+    }
+  }
+
+  await loadFromDirectoryListing();
+
+  if (byPath.size) {
+    imageOptions = Array.from(byPath.values());
+    return;
+  }
+
+  // Fallback: build a small selector list from article cover paths.
+  for (const indexUrl of CONTENT_INDEX_CANDIDATES) {
+    try {
+      const response = await fetch(`${indexUrl}?v=${stamp}`, { cache: 'no-store' });
+      if (!response.ok) continue;
+
+      const payload = await response.json();
+      const list = Array.isArray(payload) ? payload : [];
+      const unique = new Set();
+
+      const fallback = list
+        .map((item) => item?.cover)
+        .filter((cover) => typeof cover === 'string' && cover.startsWith('/images/'))
+        .filter((cover) => {
+          if (unique.has(cover)) return false;
+          unique.add(cover);
+          return true;
+        })
+        .map((cover) => ({
+          path: cover,
+          name: cover.split('/').pop() || cover
+        }));
+
+      addImages(fallback);
+
+      if (byPath.size) {
+        imageOptions = Array.from(byPath.values());
+        return;
+      }
+    } catch {
+      // Leave imageOptions empty if all sources fail.
+    }
+  }
+
+  imageOptions = [];
 }
 
 function isImagePath(value = '') {

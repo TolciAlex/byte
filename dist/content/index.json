@@ -1,5 +1,32 @@
 [
   {
+    "title": "Fashion Goes Feudal",
+    "slug": "feudal",
+    "subtitle": "",
+    "date": "2026-09-18",
+    "category": "EDITORIAL",
+    "cover": "/images/f0.jpg",
+    "status": "published"
+  },
+  {
+    "title": "WHY IS THERE A TOMATO STEM IN MY BROOCH?",
+    "slug": "tomat",
+    "subtitle": "",
+    "date": "2026-09-18",
+    "category": "EDITORIAL",
+    "cover": "/images/br0.jpg",
+    "status": "published"
+  },
+  {
+    "title": "Our Favorite 2026 Emmy looks",
+    "slug": "emmy2026",
+    "subtitle": "",
+    "date": "2026-09-18",
+    "category": "EDITORIAL",
+    "cover": "/images/ayo.jpeg",
+    "status": "published"
+  },
+  {
     "title": "THE SUPERFAKE SYNDROME",
     "slug": "superfake",
     "subtitle": "",
