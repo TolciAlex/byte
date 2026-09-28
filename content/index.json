@@ -1,5 +1,32 @@
 [
   {
+    "title": "Diesel SS27",
+    "slug": "dieselss27",
+    "subtitle": "",
+    "date": "2026-09-28",
+    "category": "EDITORIAL",
+    "cover": "/images/ds1.jpeg",
+    "status": "published"
+  },
+  {
+    "title": "A cure for the Boring Outfit",
+    "slug": "silvania",
+    "subtitle": "",
+    "date": "2026-09-27",
+    "category": "EDITORIAL",
+    "cover": "/images/ch1.jpeg",
+    "status": "published"
+  },
+  {
+    "title": "We really miss Michele",
+    "slug": "gucciss27",
+    "subtitle": "",
+    "date": "2026-09-27",
+    "category": "EDITORIAL",
+    "cover": "/images/gc1.jpeg",
+    "status": "published"
+  },
+  {
     "title": "We Love Praying",
     "slug": "praying",
     "subtitle": "",
