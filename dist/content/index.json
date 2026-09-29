@@ -1,5 +1,14 @@
 [
   {
+    "title": "Goth Acid fantasy",
+    "slug": "acid",
+    "subtitle": "",
+    "date": "2026-09-29",
+    "category": "EDITORIAL",
+    "cover": "/images/go1.jpeg",
+    "status": "published"
+  },
+  {
     "title": "Diesel SS27",
     "slug": "dieselss27",
     "subtitle": "",
